@@ -10,6 +10,8 @@ node `v20.3.0`
 
 npm `9.7.1`
 
+yarn `1.22.19`
+
 project initialized with `npx create-react-app reactjs-simple-game --template typescript`
 
 # Getting Started with Create React App
