@@ -2,10 +2,6 @@
 
 A simple game made with ReactJS and TypeScript
 
-## notes
-
-typescript
-
 ## environment
 
 ubuntu `Ubuntu 22.04.2 LTS`
