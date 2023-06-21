@@ -1,0 +1,11 @@
+@import "/src/view/common/styles";
+
+:export {
+	gamebox: {
+		height: $game-height;
+		width: $game-width;
+	}
+	bird: {
+		size: $bird-size;
+	}
+}
