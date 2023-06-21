@@ -1,23 +1,20 @@
 import React from "react";
-import styles from "./App.module.scss";
 
 import GameBox from "./view/interface/GameBox";
 import Player from "./view/elements/Player";
-import PlayerContext from "./controller/PlayerContext";
 import GameController from "./controller/GameController";
+import { Provider } from "react-redux";
+import store from "./app/store";
 
 const App = () => {
-	const [playerYPos, setPlayerYPos] = React.useState<number>(250);
-
 	return (
-		<PlayerContext.Provider value={{ playerYPos, setPlayerYPos }}>
-			<GameController />
-			<div className={styles.wrapper}>
+		<Provider store={store}>
+			<GameController>
 				<GameBox>
 					<Player />
 				</GameBox>
-			</div>
-		</PlayerContext.Provider>
+			</GameController>
+		</Provider>
 	);
 };
 

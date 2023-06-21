@@ -1,15 +1,15 @@
 import React from "react";
 import styles from "./Player.module.scss";
-import PlayerContext from "../../controller/PlayerContext";
+import { RootState } from "../../app/store";
+import { useAppSelector } from "../../app/hooks";
 
 const Player = () => {
-	const context = React.useContext(PlayerContext);
+	const playerYPos = useAppSelector(
+		(state: RootState) => state.player.playerYPos
+	);
 
 	return (
-		<div
-			className={styles.bird}
-			style={{ bottom: context.playerYPos + "px" }}
-		></div>
+		<div className={styles.bird} style={{ bottom: playerYPos + "px" }}></div>
 	);
 };
 

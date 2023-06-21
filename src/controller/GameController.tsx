@@ -1,28 +1,35 @@
 import React from "react";
-import PlayerContext from "./PlayerContext";
-import { BIRD_SIZE, GAMEBOX_HEIGHT } from "../view/common/consts";
+import styles from "./GameController.module.scss";
+import { playerSlice } from "../state/playerSlice";
+import { useAppDispatch } from "../app/hooks";
 
-const MIN_Y = 0;
-const MAX_Y = GAMEBOX_HEIGHT - BIRD_SIZE;
-const GRAVITY = 3;
 const TICK = 24; // ms
 
-const GameController = () => {
-	const playerContext = React.useContext(PlayerContext);
+type Props = {
+	children?: React.ReactNode;
+};
+
+const GameController = ({ children }: Props) => {
+	const dispatch = useAppDispatch();
 
 	React.useEffect(() => {
 		const i = setInterval(() => {
-			if (playerContext.playerYPos > MIN_Y)
-				playerContext.setPlayerYPos(
-					Math.max(MIN_Y, playerContext.playerYPos - GRAVITY)
-				);
+			dispatch(playerSlice.actions.fall());
 		}, TICK);
 		return () => {
 			clearInterval(i);
 		};
 	});
 
-	return null;
+	const jump = () => {
+		dispatch(playerSlice.actions.jump());
+	};
+
+	return (
+		<div className={styles.wrapper} onClick={jump}>
+			{children}
+		</div>
+	);
 };
 
 export default GameController;
