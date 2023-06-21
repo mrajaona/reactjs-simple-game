@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./GameController.module.scss";
 import { playerSlice } from "../state/playerSlice";
 import { useAppDispatch } from "../app/hooks";
@@ -10,23 +10,30 @@ type Props = {
 };
 
 const GameController = ({ children }: Props) => {
+	const [started, setStarted] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 
 	React.useEffect(() => {
-		const i = setInterval(() => {
-			dispatch(playerSlice.actions.fall());
-		}, TICK);
-		return () => {
-			clearInterval(i);
-		};
-	});
+		if (started) {
+			const i = setInterval(() => {
+				dispatch(playerSlice.actions.fall());
+			}, TICK);
+			return () => {
+				clearInterval(i);
+			};
+		}
+	}, [started]);
 
 	const jump = () => {
 		dispatch(playerSlice.actions.jump());
 	};
 
+	const handleClick = () => {
+		!started ? setStarted(true) : jump();
+	};
+
 	return (
-		<div className={styles.wrapper} onClick={jump}>
+		<div className={styles.wrapper} onClick={handleClick}>
 			{children}
 		</div>
 	);
