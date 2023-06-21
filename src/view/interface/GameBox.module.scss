@@ -1,0 +1,7 @@
+@import "/src/view/common/styles";
+
+.gamebox {
+	height: $game-height;
+	width: $game-width;
+	background-color: $game-bg-color;
+}

@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./App.module.scss";
-
-import Player from "./components/Player";
+import { GameBox } from "./view/interface/GameBox";
+import { Player } from "./view/elements/Player";
 
 function App() {
 	return (
-		<div className={styles.app}>
-			<Player />
+		<div className={styles.wrapper}>
+			<GameBox>
+				<Player />
+			</GameBox>
 		</div>
 	);
 }
