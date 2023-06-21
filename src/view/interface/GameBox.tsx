@@ -5,10 +5,12 @@ type Props = {
 	children?: React.ReactNode;
 };
 
-export const GameBox = ({ children }: Props) => {
+const GameBox = ({ children }: Props) => {
 	return (
 		<div className={styles.gamebox}>
 			<div className={styles.container}>{children}</div>
 		</div>
 	);
 };
+
+export default GameBox;
