@@ -3,6 +3,7 @@ import styles from "./Pipe.module.scss";
 import { ScrollingItem } from "../../state/scrollSlice";
 
 export type PipeProps = {
+	index: number;
 	pathTopPos: number;
 } & ScrollingItem;
 

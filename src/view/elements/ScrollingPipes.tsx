@@ -30,18 +30,17 @@ const ScrollingPipes = () => {
 			Math.random() * (PATH_MAX_Y - PATH_MIN_Y) + PATH_MIN_Y
 		);
 
-		const lastScrollValue =
-			scrollingPipes[scrollingPipes.length - 1]?.scrollValue;
-		const scrollValue =
-			lastScrollValue !== undefined ? lastScrollValue - PIPE_SPACING : 0;
+		const lastPipe = scrollingPipes[scrollingPipes.length - 1];
 
-		const props = { pathTopPos, scrollValue };
+		const index = lastPipe?.index !== undefined ? lastPipe?.index + 1 : 0;
+		const scrollValue =
+			lastPipe?.scrollValue !== undefined
+				? lastPipe?.scrollValue - PIPE_SPACING
+				: 0;
+
+		const props = { index, pathTopPos, scrollValue };
 
 		dispatch(scrollSlice.actions.addItem(props));
-	}, [scrollingPipes.length]);
-
-	React.useEffect(() => {
-		console.debug(scrollingPipes);
 	}, [scrollingPipes.length]);
 
 	return (

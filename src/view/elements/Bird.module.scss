@@ -2,7 +2,7 @@
 
 .bird {
 	position: absolute;
-	left: calc($pipe-width + $bird-left-pos);
+	left: $bird-left-pos;
 	background-color: $bird-color;
 	height: $bird-size;
 	width: $bird-size;

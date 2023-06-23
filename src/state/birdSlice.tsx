@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { BIRD_SIZE } from "../view/elements/Bird.consts";
 import { GAMEBOX_HEIGHT } from "../view/interface/Gamebox.consts";
+import variables from "../view/common/consts.module.scss";
+
+const BIRD_SIZE = parseInt(variables["bird-size"]);
 
 const MIN_Y = 0;
 const MAX_Y = GAMEBOX_HEIGHT - BIRD_SIZE;
