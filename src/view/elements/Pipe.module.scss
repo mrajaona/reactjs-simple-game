@@ -1,0 +1,19 @@
+@import "/src/view/common/styles";
+
+.pipe {
+	position: absolute;
+	right: 0;
+
+	background-color: $pipe-color;
+	height: 100%;
+	width: $pipe-width;
+
+	& .path {
+		position: relative;
+		top: 0px;
+
+		background-color: gray;
+		width: 100%;
+		height: $pipe-path-height;
+	}
+}

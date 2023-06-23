@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styles from "./GameController.module.scss";
-import { playerSlice } from "../state/playerSlice";
-import { useAppDispatch } from "../app/hooks";
+import { birdSlice } from "../state/birdSlice";
+import { scrollSlice } from "../state/scrollSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { GAMEBOX_HEIGHT } from "../view/interface/Gamebox.consts";
+import { BIRD_SIZE } from "../view/elements/Bird.consts";
 
-const TICK = 24; // ms
+export const TICK = 24; // ms
 
 type Props = {
 	children?: React.ReactNode;
@@ -11,24 +14,44 @@ type Props = {
 
 const GameController = ({ children }: Props) => {
 	const [started, setStarted] = useState<boolean>(false);
+	const [ended, setEnded] = useState<boolean>(false);
+
 	const dispatch = useAppDispatch();
 
+	const birdYPos = useAppSelector((state) => state.bird.birdYPos);
+
+	// detect game over
 	React.useEffect(() => {
-		if (started) {
+		if (!started || ended) return;
+		if (birdYPos <= 0 || birdYPos >= GAMEBOX_HEIGHT - BIRD_SIZE) setEnded(true);
+	}, [birdYPos]);
+
+	// handle scroll and gravity
+	React.useEffect(() => {
+		if (started && !ended) {
 			const i = setInterval(() => {
-				dispatch(playerSlice.actions.fall());
+				dispatch(birdSlice.actions.fall());
+				// dispatch(scrollSlice.actions.scroll());
 			}, TICK);
 			return () => {
 				clearInterval(i);
 			};
 		}
-	}, [started]);
+	}, [started, ended]);
 
 	const jump = () => {
-		dispatch(playerSlice.actions.jump());
+		dispatch(birdSlice.actions.jump());
 	};
 
 	const handleClick = () => {
+		if (ended) {
+			setStarted(false);
+			dispatch(birdSlice.actions.reset());
+
+			setEnded(false);
+			return;
+		}
+
 		!started ? setStarted(true) : jump();
 	};
 

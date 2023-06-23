@@ -5,7 +5,16 @@
 		height: $game-height;
 		width: $game-width;
 	}
+	scrollbox: {
+		width: $scrollbox-width;
+	}
 	bird: {
 		size: $bird-size;
+	}
+	pipe: {
+		width: $pipe-width;
+		path: {
+			height: $pipe-path-height;
+		}
 	}
 }

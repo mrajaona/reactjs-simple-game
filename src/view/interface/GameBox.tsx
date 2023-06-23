@@ -8,7 +8,7 @@ type Props = {
 const GameBox = ({ children }: Props) => {
 	return (
 		<div className={styles.gamebox}>
-			<div className={styles.container}>{children}</div>
+			<div className={styles.scrollbox}>{children}</div>
 		</div>
 	);
 };

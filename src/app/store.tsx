@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import playerReducer from "../state/playerSlice";
+import birdReducer from "../state/birdSlice";
+import scrollReducer from "../state/scrollSlice";
 
 const store = configureStore({
 	reducer: {
-		player: playerReducer,
+		bird: birdReducer,
+		scroll: scrollReducer,
 	},
 });
 

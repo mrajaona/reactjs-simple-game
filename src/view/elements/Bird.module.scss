@@ -1,0 +1,11 @@
+@import "/src/view/common/styles";
+
+.bird {
+	position: absolute;
+	left: calc($pipe-width + $bird-left-pos);
+	background-color: $bird-color;
+	height: $bird-size;
+	width: $bird-size;
+	bottom: 0;
+	border-radius: 50%;
+}

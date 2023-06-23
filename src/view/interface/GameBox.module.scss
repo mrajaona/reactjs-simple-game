@@ -1,8 +1,19 @@
 @import "/src/view/common/styles";
 
 .gamebox {
+	position: relative;
+
 	height: $game-height;
 	width: $game-width;
 	background-color: $game-bg-color;
-	position: relative;
+
+	overflow: hidden;
+
+	& .scrollbox {
+		position: absolute;
+		left: calc(-1 * $pipe-width);
+
+		height: 100%;
+		width: $scrollbox-width;
+	}
 }
