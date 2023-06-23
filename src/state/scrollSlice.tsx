@@ -1,34 +1,41 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PipeProps } from "../view/elements/Pipe";
+import variables from "../view/common/consts.module.scss";
 
 const SCROLL_SPEED = 5;
+const SCROLLBOX_WIDTH = parseInt(variables["scrollbox-width"]);
 
-type ScrollingItem = {
-	id: string; // todo: do better
+export type ScrollingItem = {
 	scrollValue: number;
 };
 
 type ScrollState = {
-	ScrollingItems: ScrollingItem[];
+	scrollingPipes: PipeProps[];
 };
 
 const initialState: ScrollState = {
-	ScrollingItems: [],
+	scrollingPipes: [],
 };
 
 export const scrollSlice = createSlice({
 	name: "scroll",
 	initialState,
 	reducers: {
-		scroll: (state) => {
-			state.ScrollingItems = state.ScrollingItems.map((item) => {
-				return { ...item, scrollValue: item.scrollValue + SCROLL_SPEED };
-			});
+		reset: (state) => {
+			state.scrollingPipes = [];
 		},
-		addItem: (state, action: PayloadAction<ScrollingItem>) => {
-			state.ScrollingItems.push(action.payload);
+		scroll: (state) => {
+			state.scrollingPipes = state.scrollingPipes
+				.map((item) => {
+					return { ...item, scrollValue: item.scrollValue + SCROLL_SPEED };
+				})
+				.filter((item) => item.scrollValue < SCROLLBOX_WIDTH);
+		},
+		addItem: (state, action: PayloadAction<PipeProps>) => {
+			state.scrollingPipes.push(action.payload);
 		},
 		removeItem: (state) => {
-			state.ScrollingItems.shift();
+			state.scrollingPipes.shift();
 		},
 	},
 });

@@ -31,7 +31,7 @@ const GameController = ({ children }: Props) => {
 		if (started && !ended) {
 			const i = setInterval(() => {
 				dispatch(birdSlice.actions.fall());
-				// dispatch(scrollSlice.actions.scroll());
+				dispatch(scrollSlice.actions.scroll());
 			}, TICK);
 			return () => {
 				clearInterval(i);
@@ -47,6 +47,7 @@ const GameController = ({ children }: Props) => {
 		if (ended) {
 			setStarted(false);
 			dispatch(birdSlice.actions.reset());
+			dispatch(scrollSlice.actions.reset());
 
 			setEnded(false);
 			return;

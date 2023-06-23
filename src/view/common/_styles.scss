@@ -1,14 +1,14 @@
 $game-height: 600px;
-$game-width: 500px;
+$game-width: 800px;
 $game-bg-color: blue;
 
 $bird-size: 30px;
 $bird-left-pos: 50px;
 $bird-color: red;
 
-$pipe-width: 60px;
+$pipe-width: 50px;
 $pipe-color: green;
 
-$pipe-path-height: 100px;
+$pipe-path-height: 150px;
 
 $scrollbox-width: calc($game-width + 2 * $pipe-width);

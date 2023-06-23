@@ -4,8 +4,8 @@ import { GAMEBOX_HEIGHT } from "../view/interface/Gamebox.consts";
 
 const MIN_Y = 0;
 const MAX_Y = GAMEBOX_HEIGHT - BIRD_SIZE;
-const GRAVITY = 3;
-const JUMP_HEIGHT = 100;
+const GRAVITY = 5;
+const JUMP_HEIGHT = 80;
 
 const DEFAULT_POS = 250;
 
