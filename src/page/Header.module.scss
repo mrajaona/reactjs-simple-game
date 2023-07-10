@@ -1,3 +1,5 @@
+@import "/src/common/styles";
+
 .header {
 	background-color: aqua;
 	color: white;
@@ -7,6 +9,6 @@
 	& h1 {
 		margin: 0;
 		font-size: 30px;
-		font-family: Arial, Helvetica, sans-serif;
+		font-family: $base-font;
 	}
 }

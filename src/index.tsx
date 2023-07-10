@@ -5,7 +5,6 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ErrorPage from "./error";
 import BirdApp from "./games/bird/App";
-import Welcome from "./welcome/Welcome";
 import Root from "./root/Root";
 import Page from "./page/Page";
 
@@ -19,7 +18,7 @@ const router = createBrowserRouter([
 			</Page>
 		),
 		children: [
-			{ path: "", element: <Welcome /> },
+			{ path: "", element: <p>Welcome</p> },
 			{
 				path: "game",
 				element: (
@@ -30,7 +29,7 @@ const router = createBrowserRouter([
 				children: [
 					{
 						path: "",
-						element: <div>games</div>,
+						element: <p>Games</p>,
 					},
 					{
 						path: "bird",
