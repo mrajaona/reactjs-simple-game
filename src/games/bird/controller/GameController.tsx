@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./GameController.module.scss";
 import { birdSlice } from "../state/birdSlice";
 import { scrollSlice } from "../state/scrollSlice";
 import { scoreSlice } from "../state/scoreSlice";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { GAMEBOX_HEIGHT } from "../view/interface/Gamebox.consts";
 import variables from "../view/common/consts.module.scss";
 import { shallowEqual } from "react-redux";
+import { GAMEBOX_HEIGHT } from "../view/interface/Gamebox.consts";
 
 export const TICK = 24; // ms
 
@@ -23,9 +23,9 @@ type Props = {
 };
 
 const GameController = ({ children }: Props) => {
-	const [started, setStarted] = useState<boolean>(false);
-	const [ended, setEnded] = useState<boolean>(false);
-	const [lastPassed, setLastPassed] = useState<number>(-1);
+	const [started, setStarted] = React.useState<boolean>(false);
+	const [ended, setEnded] = React.useState<boolean>(false);
+	const [lastPassed, setLastPassed] = React.useState<number>(-1);
 
 	const dispatch = useAppDispatch();
 
@@ -34,6 +34,22 @@ const GameController = ({ children }: Props) => {
 		(state) => state.scroll.scrollingPipes,
 		shallowEqual
 	);
+
+	const reset = () => {
+		setStarted(false);
+		dispatch(birdSlice.actions.reset());
+		dispatch(scrollSlice.actions.reset());
+		dispatch(scoreSlice.actions.reset());
+
+		setEnded(false);
+	};
+
+	// Reset on page change
+	React.useEffect(() => {
+		return () => {
+			reset();
+		};
+	}, []);
 
 	// handle score
 	React.useEffect(() => {
@@ -104,12 +120,7 @@ const GameController = ({ children }: Props) => {
 
 	const handleClick = () => {
 		if (ended) {
-			setStarted(false);
-			dispatch(birdSlice.actions.reset());
-			dispatch(scrollSlice.actions.reset());
-			dispatch(scoreSlice.actions.reset());
-
-			setEnded(false);
+			reset();
 			return;
 		}
 
