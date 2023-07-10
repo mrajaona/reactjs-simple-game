@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Menu.module.scss";
+import { Link } from "react-router-dom";
 
 const links: { link: string; name: string }[] = [
 	{ link: "/", name: "home" },
@@ -14,7 +15,7 @@ const Menu = () => {
 				{links.map((item, i) => {
 					return (
 						<li key={`link_${i}`}>
-							<a href={item.link}>{item.name}</a>
+							<Link to={item.link}>{item.name}</Link>
 						</li>
 					);
 				})}

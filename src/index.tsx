@@ -2,22 +2,43 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import ErrorPage from "./error";
 import BirdApp from "./games/bird/App";
 import Welcome from "./welcome/Welcome";
+import Root from "./root/Root";
 import Page from "./page/Page";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <Welcome />,
-		errorElement: <ErrorPage />,
-	},
-	{
-		path: "/game/bird",
-		element: <BirdApp />,
-		errorElement: <ErrorPage />,
+		element: <Root />,
+		errorElement: (
+			<Page>
+				<ErrorPage />
+			</Page>
+		),
+		children: [
+			{ path: "", element: <Welcome /> },
+			{
+				path: "game",
+				element: (
+					<div>
+						<Outlet />
+					</div>
+				),
+				children: [
+					{
+						path: "",
+						element: <div>games</div>,
+					},
+					{
+						path: "bird",
+						element: <BirdApp />,
+					},
+				],
+			},
+		],
 	},
 ]);
 
@@ -26,9 +47,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
-		<Page>
-			<RouterProvider router={router} />
-		</Page>
+		<RouterProvider router={router} />
 	</React.StrictMode>
 );
 
