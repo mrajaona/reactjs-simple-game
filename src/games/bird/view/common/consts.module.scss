@@ -1,0 +1,21 @@
+@import "./styles";
+
+:export {
+	gamebox: {
+		height: $game-height;
+		width: $game-width;
+	}
+	scrollbox: {
+		width: $scrollbox-width;
+	}
+	bird: {
+		size: $bird-size;
+		left: $bird-left-pos;
+	}
+	pipe: {
+		width: $pipe-width;
+		path: {
+			height: $pipe-path-height;
+		}
+	}
+}

@@ -5,8 +5,8 @@ import { GAMEBOX_HEIGHT } from "../interface/Gamebox.consts";
 
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Pipe from "./Pipe";
-import { scrollSlice } from "../../state/scrollSlice";
 import { shallowEqual } from "react-redux";
+import { scrollSlice } from "../../state/scrollSlice";
 
 const PIPE_SPACING = 350;
 const VISIBLE_PIPES = 3;
