@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./error";
 import BirdApp from "./games/bird/App";
 import Welcome from "./welcome/Welcome";
+import Page from "./page/Page";
 
 const router = createBrowserRouter([
 	{
@@ -25,7 +26,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<Page>
+			<RouterProvider router={router} />
+		</Page>
 	</React.StrictMode>
 );
 

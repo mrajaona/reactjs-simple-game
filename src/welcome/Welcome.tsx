@@ -1,12 +1,7 @@
 import React from "react";
-import Page from "../page/Page";
 
 const Welcome = () => {
-	return (
-		<Page>
-			<p>Welcome</p>
-		</Page>
-	);
+	return <p>Welcome</p>;
 };
 
 export default Welcome;
